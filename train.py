@@ -37,7 +37,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
             model.zero_grad()
             loss_document = F.cross_entropy(document_outputs, document_label_tensor)
             loss_sentence = F.nll_loss(sentence_outputs, sentence_label_tensor)
-            total_loss = loss_document + loss_sentence
+            total_loss = 0.5*loss_document + 0.5*loss_sentence
             total_loss.backward()
             optimizer.step()
             if total_batch % 100 == 0:
