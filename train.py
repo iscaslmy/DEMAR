@@ -31,7 +31,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
         print('Epoch [{}/{}]'.format(epoch + 1, config.num_epochs))
         for i, (trains, labels) in enumerate(train_iter):
             labels_tensor = torch.tensor(labels)
-            document_label_tensor, sentence_label_tensor = labels_tensor.split([1, 8], dim=1)
+            document_label_tensor, sentence_label_tensor = labels_tensor.split([1, 10], dim=1)
             document_label_tensor = torch.squeeze(document_label_tensor, dim=1)
             document_outputs, sentence_outputs = model(trains)
             model.zero_grad()
